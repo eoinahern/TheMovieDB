@@ -1,4 +1,4 @@
-package ie.eoinahern.imdbapp.ui
+package ie.eoinahern.imdbapp.ui.main
 
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
