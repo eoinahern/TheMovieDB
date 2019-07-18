@@ -8,5 +8,5 @@ import retrofit2.http.GET
 interface TMDBApi {
 
     @GET("search/movie")
-    fun searchMovie(searchTerm: String): Observable<Response<MovieSearchWrapper>>
+    fun searchMovie(searchTerm: String): Observable<MovieSearchWrapper>
 }
