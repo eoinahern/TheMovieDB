@@ -1,7 +1,6 @@
 package ie.eoinahern.imdbapp.ui.main
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import ie.eoinahern.imdbapp.data.model.MovieDetails
 import ie.eoinahern.imdbapp.data.model.MovieSearchWrapper
 import ie.eoinahern.imdbapp.domain.main.GetMovieDataUsecase
@@ -40,5 +39,4 @@ class MainViewModel @Inject constructor(private val getMovieDataUsecase: GetMovi
         super.onCleared()
         getMovieDataUsecase.clearDsiposables()
     }
-
 }
