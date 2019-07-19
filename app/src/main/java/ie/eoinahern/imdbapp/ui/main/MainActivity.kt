@@ -7,6 +7,7 @@ import ie.eoinahern.imdbapp.data.model.MovieDetails
 import ie.eoinahern.imdbapp.ui.base.BaseActivity
 import ie.eoinahern.imdbapp.ui.details.DetailsActivity
 import ie.eoinahern.imdbapp.util.ErrorState
+import ie.eoinahern.imdbapp.util.observe
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -15,18 +16,19 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var adapter: MainActivityAdapter
 
-    class EmptyListState : ErrorState.CustomErrorState()
+    private lateinit var viewModel: MainViewModel
+
+    private class EmptyListState : ErrorState.CustomErrorState()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         initAdapter()
         initViewModel()
+        viewModel.searchMovie("boo")
     }
 
-    override fun getLayout(): Int {
-        return R.layout.activity_main
-    }
+    override fun getLayout(): Int = R.layout.activity_main
 
     private fun initAdapter() {
         recycler.adapter = adapter
@@ -34,7 +36,9 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initViewModel() {
-
+        viewModel = getViewModel(MainViewModel::class.java) {
+            observe(getMovieLiveData(), ::updateAdapter)
+        }
     }
 
     private fun navigateNext(movieDetails: MovieDetails) {

@@ -12,10 +12,6 @@ class ViewModelFactory @Inject constructor(private val viewModelsMap: MutableMap
     ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ViewModel::class.java)) {
-            return viewModelsMap[modelClass]?.get() as T
-        } else {
-            throw IllegalStateException("viewModel failed to create")
-        }
+        return viewModelsMap[modelClass]?.get() as T
     }
 }

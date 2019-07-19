@@ -14,14 +14,6 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-
-    @Provides
-    @Singleton
-    fun getSearchClient() {
-
-    }
-
-
     @Provides
     @Singleton
     fun getSearchApi(): TMDBApi {
@@ -33,15 +25,7 @@ class NetworkModule {
                     Moshi.Builder()
                         .add(KotlinJsonAdapterFactory()).build()
                 )
-            )
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build().create(TMDBApi::class.java)
-
-    }
-
-    @Provides
-    @Singleton
-    fun getImageApi() {
+            ).addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build().create(TMDBApi::class.java)
 
     }
 

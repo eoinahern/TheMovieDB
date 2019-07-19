@@ -1,5 +1,6 @@
 package ie.eoinahern.imdbapp.ui.main
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ie.eoinahern.imdbapp.data.model.MovieDetails
 import ie.eoinahern.imdbapp.data.model.MovieSearchWrapper
@@ -34,6 +35,8 @@ class MainViewModel @Inject constructor(private val getMovieDataUsecase: GetMovi
                 }
             })
     }
+
+    fun getMovieLiveData(): LiveData<List<MovieDetails>> = searchData
 
     override fun onCleared() {
         super.onCleared()

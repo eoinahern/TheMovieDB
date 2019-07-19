@@ -7,8 +7,13 @@ import ie.eoinahern.imdbapp.IMDBApp
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, ApplicationModule::class, BuilderModule::class,
-                ViewModelModule::class])
+@Component(
+    modules = [AndroidSupportInjectionModule::class,
+        ApplicationModule::class,
+        BuilderModule::class,
+        NetworkModule::class,
+        ViewModelModule::class]
+)
 interface ApplicationComponent {
 
     @Component.Builder
