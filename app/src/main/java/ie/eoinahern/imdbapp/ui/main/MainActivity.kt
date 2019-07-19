@@ -29,14 +29,19 @@ class MainActivity : BaseActivity() {
 
     private fun initAdapter() {
         recycler.adapter = adapter
+        adapter.listener = ::navigateNext
     }
 
     private fun initViewModel() {
 
     }
 
-    fun updateAdapter(list: List<MovieDetails>) {
+    private fun navigateNext(movieDetails: MovieDetails) {
 
+    }
+
+    fun updateAdapter(list: List<MovieDetails>) {
+        adapter.updataAdapter(list)
     }
 
     fun displayError(error: ErrorState) {
