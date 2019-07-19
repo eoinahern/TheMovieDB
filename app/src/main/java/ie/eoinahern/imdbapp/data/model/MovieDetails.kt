@@ -1,8 +1,10 @@
 package ie.eoinahern.imdbapp.data.model
 
+import android.os.Parcelable
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class MovieDetails(
     val poster_path: String,
@@ -19,4 +21,4 @@ data class MovieDetails(
     val vote_count: Int,
     val video: Boolean,
     val vote_average: Float
-)
+) : Parcelable

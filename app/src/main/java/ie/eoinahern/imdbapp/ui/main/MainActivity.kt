@@ -5,6 +5,7 @@ import dagger.android.AndroidInjection
 import ie.eoinahern.imdbapp.R
 import ie.eoinahern.imdbapp.data.model.MovieDetails
 import ie.eoinahern.imdbapp.ui.base.BaseActivity
+import ie.eoinahern.imdbapp.ui.details.DetailsActivity
 import ie.eoinahern.imdbapp.util.ErrorState
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -37,7 +38,9 @@ class MainActivity : BaseActivity() {
     }
 
     private fun navigateNext(movieDetails: MovieDetails) {
-
+        val intent = DetailsActivity.getStartIntent(this)
+        intent.putExtra("item", movieDetails)
+        startActivity(intent)
     }
 
     fun updateAdapter(list: List<MovieDetails>) {
