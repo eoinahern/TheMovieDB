@@ -8,6 +8,7 @@ import ie.eoinahern.imdbapp.ui.base.BaseActivity
 import ie.eoinahern.imdbapp.ui.details.DetailsActivity
 import ie.eoinahern.imdbapp.util.ErrorState
 import ie.eoinahern.imdbapp.util.observe
+import ie.eoinahern.imdbapp.util.onError
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -38,6 +39,7 @@ class MainActivity : BaseActivity() {
     private fun initViewModel() {
         viewModel = getViewModel(MainViewModel::class.java) {
             observe(getMovieLiveData(), ::updateAdapter)
+            onError(errorResponse, ::displayError)
         }
     }
 
@@ -47,11 +49,11 @@ class MainActivity : BaseActivity() {
         startActivity(intent)
     }
 
-    fun updateAdapter(list: List<MovieDetails>) {
+    private fun updateAdapter(list: List<MovieDetails>) {
         adapter.updataAdapter(list)
     }
 
-    fun displayError(error: ErrorState) {
+    private fun displayError(error: ErrorState) {
 
         when (error) {
             is EmptyListState -> println("empty List")

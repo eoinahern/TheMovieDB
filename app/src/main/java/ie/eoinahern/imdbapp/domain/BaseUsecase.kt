@@ -11,7 +11,6 @@ abstract class BaseUsecase<T> {
     private val disposables = CompositeDisposable()
 
     fun execute(dispObserver: DisposableObserver<T>) {
-
         disposables.add(
             buildObservable()
                 .subscribeOn(Schedulers.io())

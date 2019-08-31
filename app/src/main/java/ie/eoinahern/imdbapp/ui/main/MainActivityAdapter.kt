@@ -40,7 +40,6 @@ class MainActivityAdapter @Inject constructor() : RecyclerView.Adapter<MainActiv
     }
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-
         private val image: ImageView by lazy { v.findViewById(R.id.movieImage) }
         private val movieTitle: TextView by lazy { v.findViewById(R.id.movieTitle) }
         private val movieYear: TextView by lazy { v.findViewById(R.id.movieYear) }
@@ -57,6 +56,5 @@ class MainActivityAdapter @Inject constructor() : RecyclerView.Adapter<MainActiv
             movieTitle.text = movie.title
             movieYear.text = movie.release_date
         }
-
     }
 }
