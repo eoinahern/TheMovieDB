@@ -1,30 +1,55 @@
 package ie.eoinahern.imdbapp.util
 
 import android.content.Context
-import android.graphics.Canvas
 import android.util.AttributeSet
+import android.view.View
+import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.TextView
+import ie.eoinahern.imdbapp.R
 
-class LoadingView(
-    con: Context, attrsSet: AttributeSet? = null, style: Int = -1
-) : LinearLayout(con, attrsSet, style) {
+
+class LoadingView : FrameLayout {
 
     private lateinit var loading: LinearLayout
-    private lateinit var loadingText: TextView
+    private lateinit var loadingText: LinearLayout
 
-    private fun init() {
-
+    constructor(con: Context) : super(con) {
+        init(con)
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
+    constructor(con: Context, attrsSet: AttributeSet) : super(con, attrsSet) {
+        init(con)
+    }
 
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
+        init(context)
     }
 
 
-    fun updateLoadingState() {
+    private fun init(con: Context) {
+        val view = inflate(con, R.layout.loading_view_layout, this)
+        loading = view.findViewById(R.id.pb_layout)
+        loadingText = view.findViewById(R.id.warning_layout)
+    }
 
+    fun updateLoadingState(currentState: State) {
+
+        when (currentState) {
+            State.LOADING -> {
+                loading.visibility = View.VISIBLE
+                loadingText.visibility = View.GONE
+            }
+            State.ERROR -> {
+                loading.visibility = View.GONE
+                loadingText.visibility = View.VISIBLE
+
+            }
+            State.GONE -> this.visibility = View.GONE
+        }
     }
 
     enum class State {

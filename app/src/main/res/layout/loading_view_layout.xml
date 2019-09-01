@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tools:merge xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:parentTag="android.widget.FrameLayout">
+
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+        <LinearLayout
+                android:id="@+id/pb_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+            <ProgressBar
+                    android:id="@+id/progbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/loading_text"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/warning_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:text="@string/no_search_term"
+                    tools:text="warning text hello!!" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</tools:merge>

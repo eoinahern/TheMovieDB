@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">IMDBApp</string>
+    <string name="loading_text">Loading</string>
+    <string name="no_search_term">please seach movies!</string>
 </resources>
