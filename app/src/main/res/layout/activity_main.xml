@@ -27,6 +27,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar">
 
+
+        <ie.eoinahern.imdbapp.util.LoadingView
+                android:id="@+id/loading"
+                android:layout_width="100dp"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:layout_height="100dp" />
+
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
