@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.TextView
 import ie.eoinahern.imdbapp.R
 
 
@@ -12,6 +13,7 @@ class LoadingView : FrameLayout {
 
     private lateinit var loading: LinearLayout
     private lateinit var loadingText: LinearLayout
+    private lateinit var errorTxt: TextView
 
     constructor(con: Context) : super(con) {
         init(con)
@@ -29,11 +31,15 @@ class LoadingView : FrameLayout {
         init(context)
     }
 
+    fun setErrorText(outputStr: String) {
+        errorTxt.text = outputStr
+    }
 
     private fun init(con: Context) {
         val view = inflate(con, R.layout.loading_view_layout, this)
         loading = view.findViewById(R.id.pb_layout)
         loadingText = view.findViewById(R.id.warning_layout)
+        errorTxt = view.findViewById(R.id.error_txt)
     }
 
     fun updateLoadingState(currentState: State) {

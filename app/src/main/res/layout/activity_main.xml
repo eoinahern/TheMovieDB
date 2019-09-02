@@ -30,8 +30,7 @@
 
         <ie.eoinahern.imdbapp.util.LoadingView
                 android:id="@+id/loading"
-                android:layout_width="100dp"
-                android:visibility="gone"
+                android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:layout_height="100dp" />
 

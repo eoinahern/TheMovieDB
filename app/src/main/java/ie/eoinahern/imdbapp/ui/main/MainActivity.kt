@@ -7,6 +7,10 @@ import ie.eoinahern.imdbapp.data.model.MovieDetails
 import ie.eoinahern.imdbapp.ui.base.BaseActivity
 import ie.eoinahern.imdbapp.ui.details.DetailsActivity
 import ie.eoinahern.imdbapp.util.ErrorState
+import ie.eoinahern.imdbapp.util.LoadingView
+import ie.eoinahern.imdbapp.util.LoadingView.State.GONE
+import ie.eoinahern.imdbapp.util.LoadingView.State.LOADING
+import ie.eoinahern.imdbapp.util.LoadingView.State.ERROR
 import ie.eoinahern.imdbapp.util.observe
 import ie.eoinahern.imdbapp.util.onError
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,6 +20,8 @@ class MainActivity : BaseActivity() {
 
     @Inject
     lateinit var adapter: MainActivityAdapter
+
+    private val loading by lazy { findViewById<LoadingView>(R.id.loading) }
 
     private lateinit var viewModel: MainViewModel
 
@@ -50,24 +56,31 @@ class MainActivity : BaseActivity() {
     }
 
     private fun updateAdapter(list: List<MovieDetails>) {
+        hideLoading()
         adapter.updataAdapter(list)
     }
 
     private fun displayError(error: ErrorState) {
-
+        showErrorText()
         when (error) {
-            is EmptyListState -> println("empty List")
-            is ErrorState.NetworkError -> println("error")
-            is ErrorState.IOError -> println("net error")
-            else -> println("error loading")
+            is EmptyListState -> {
+                loading.setErrorText(resources.getString(R.string.no_movies_found))
+            }
+            is ErrorState.NetworkError, ErrorState.IOError -> {
+                loading.setErrorText(resources.getString(R.string.network_error))
+            }
         }
     }
 
-    fun showLoading() {
-
+    private fun showLoading() {
+        loading.updateLoadingState(LOADING)
     }
 
-    fun hideLoading() {
+    private fun hideLoading() {
+        loading.updateLoadingState(GONE)
+    }
 
+    private fun showErrorText() {
+        loading.updateLoadingState(ERROR)
     }
 }

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">IMDBApp</string>
     <string name="loading_text">Loading</string>
-    <string name="no_search_term">please seach movies!</string>
+    <string name="no_search_term">please search movies!</string>
+    <string name="no_movies_found">no movies found from search</string>
+    <string name="network_error">Error searching movie. please check network!</string>
 </resources>
