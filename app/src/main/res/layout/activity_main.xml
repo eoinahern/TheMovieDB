@@ -17,6 +17,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.appcompat.widget.SearchView
+                android:id="@+id/serach_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="2sp"
+                android:backgroundTint="@color/dark_red"
+                android:elevation="0dp"
+                android:theme="@style/searchStyle">
+
+        </androidx.appcompat.widget.SearchView>
+
     </androidx.appcompat.widget.Toolbar>
 
 
@@ -31,8 +42,8 @@
         <ie.eoinahern.imdbapp.util.LoadingView
                 android:id="@+id/loading"
                 android:layout_width="match_parent"
-                android:layout_gravity="center"
-                android:layout_height="100dp" />
+                android:layout_height="100dp"
+                android:layout_gravity="center" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -41,8 +52,6 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2" />
-
-
     </FrameLayout>
 
 

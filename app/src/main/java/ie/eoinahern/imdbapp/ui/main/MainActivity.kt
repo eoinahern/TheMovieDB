@@ -1,6 +1,7 @@
 package ie.eoinahern.imdbapp.ui.main
 
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import dagger.android.AndroidInjection
 import ie.eoinahern.imdbapp.R
 import ie.eoinahern.imdbapp.data.model.MovieDetails
@@ -23,6 +24,8 @@ class MainActivity : BaseActivity() {
 
     private val loading by lazy { findViewById<LoadingView>(R.id.loading) }
 
+    private val toolbar: Toolbar by lazy { findViewById<Toolbar>(R.id.toolbar) }
+
     private lateinit var viewModel: MainViewModel
 
     private class EmptyListState : ErrorState.CustomErrorState()
@@ -30,6 +33,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = ""
         initAdapter()
         initViewModel()
         viewModel.searchMovie("boo")
