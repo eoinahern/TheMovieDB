@@ -5,4 +5,5 @@
     <string name="no_movies_found">no movies found from search</string>
     <string name="network_error">Error searching movie. please check network!</string>
     <string name="search_txt">Search</string>
+    <string name="search_movie_above">Search movie in search above</string>
 </resources>

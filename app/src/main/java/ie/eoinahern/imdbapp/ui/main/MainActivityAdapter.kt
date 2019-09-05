@@ -35,8 +35,13 @@ class MainActivityAdapter @Inject constructor() :
         holder.bind(movieList[position])
     }
 
-    fun updataAdapter(listIn: List<MovieDetails>) {
-        movieList.addAll(movieList.size, listIn)
+    fun updateAdapter(listIn: List<MovieDetails>) {
+
+        if (!movieList.isNullOrEmpty()) {
+            movieList.clear()
+        }
+
+        movieList.addAll(listIn)
         notifyDataSetChanged()
     }
 

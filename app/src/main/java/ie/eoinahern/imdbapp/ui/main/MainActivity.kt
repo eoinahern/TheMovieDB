@@ -1,7 +1,7 @@
 package ie.eoinahern.imdbapp.ui.main
 
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.widget.SearchView
 import dagger.android.AndroidInjection
 import ie.eoinahern.imdbapp.R
 import ie.eoinahern.imdbapp.data.model.MovieDetails
@@ -23,8 +23,7 @@ class MainActivity : BaseActivity() {
     lateinit var adapter: MainActivityAdapter
 
     private val loading by lazy { findViewById<LoadingView>(R.id.loading) }
-
-    private val toolbar: Toolbar by lazy { findViewById<Toolbar>(R.id.toolbar) }
+    private val search by lazy { findViewById<SearchView>(R.id.search_view) }
 
     private lateinit var viewModel: MainViewModel
 
@@ -33,11 +32,11 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setSupportActionBar(toolbar)
-        supportActionBar?.title = ""
+        showErrorText()
+        loading.setErrorText(resources.getString(R.string.search_movie_above))
         initAdapter()
         initViewModel()
-        viewModel.searchMovie("boo")
+        initSearch()
     }
 
     override fun getLayout(): Int = R.layout.activity_main
@@ -54,6 +53,23 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private fun initSearch() {
+        search.isSubmitButtonEnabled = true
+
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                showLoading()
+                viewModel.searchMovie(query)
+                search.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+    }
+
     private fun navigateNext(movieDetails: MovieDetails) {
         val intent = DetailsActivity.getStartIntent(this)
         intent.putExtra("item", movieDetails)
@@ -62,7 +78,7 @@ class MainActivity : BaseActivity() {
 
     private fun updateAdapter(list: List<MovieDetails>) {
         hideLoading()
-        adapter.updataAdapter(list)
+        adapter.updateAdapter(list)
     }
 
     private fun displayError(error: ErrorState) {
