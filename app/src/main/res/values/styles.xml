@@ -16,7 +16,6 @@
         <item name="android:colorPrimary">@color/colorAccent</item>
         <item name="colorPrimary">@color/colorAccent</item>
         <item name="android:background">@color/dark_red</item>
-        <item name="android:elevation">8dp</item>
     </style>
 
     <style name="searchStyle" parent="Widget.AppCompat.SearchView">
