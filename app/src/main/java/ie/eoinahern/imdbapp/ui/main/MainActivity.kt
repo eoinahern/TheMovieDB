@@ -7,13 +7,10 @@ import ie.eoinahern.imdbapp.R
 import ie.eoinahern.imdbapp.data.model.MovieDetails
 import ie.eoinahern.imdbapp.ui.base.BaseActivity
 import ie.eoinahern.imdbapp.ui.details.DetailsActivity
-import ie.eoinahern.imdbapp.util.ErrorState
-import ie.eoinahern.imdbapp.util.LoadingView
+import ie.eoinahern.imdbapp.util.*
 import ie.eoinahern.imdbapp.util.LoadingView.State.GONE
 import ie.eoinahern.imdbapp.util.LoadingView.State.LOADING
 import ie.eoinahern.imdbapp.util.LoadingView.State.ERROR
-import ie.eoinahern.imdbapp.util.observe
-import ie.eoinahern.imdbapp.util.onError
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -24,9 +21,7 @@ class MainActivity : BaseActivity() {
 
     private val loading by lazy { findViewById<LoadingView>(R.id.loading) }
     private val search by lazy { findViewById<SearchView>(R.id.search_view) }
-
     private lateinit var viewModel: MainViewModel
-
     private class EmptyListState : ErrorState.CustomErrorState()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +50,6 @@ class MainActivity : BaseActivity() {
 
     private fun initSearch() {
         search.isSubmitButtonEnabled = true
-
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 showLoading()
@@ -64,7 +58,7 @@ class MainActivity : BaseActivity() {
                 return true
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
+            override fun onQueryTextChange(newText: String): Boolean {
                 return false
             }
         })
@@ -72,7 +66,7 @@ class MainActivity : BaseActivity() {
 
     private fun navigateNext(movieDetails: MovieDetails) {
         val intent = DetailsActivity.getStartIntent(this)
-        intent.putExtra("item", movieDetails)
+        intent.putExtra(MOVIE_KEY, movieDetails)
         startActivity(intent)
     }
 
