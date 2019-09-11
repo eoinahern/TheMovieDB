@@ -19,9 +19,6 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class GetMovieDataUsecaseTest {
 
-    @get: Rule
-    val schedulerTestRule: SchedulerTestRule = SchedulerTestRule()
-
     @Mock
     private lateinit var mockApi: TMDBApi
 
