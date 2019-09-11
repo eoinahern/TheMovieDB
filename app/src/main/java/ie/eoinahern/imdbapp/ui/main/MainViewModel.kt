@@ -11,7 +11,8 @@ import io.reactivex.observers.DisposableObserver
 import java.io.IOException
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val getMovieDataUsecase: GetMovieDataUsecase) : BaseViewModel() {
+class MainViewModel @Inject constructor(private val getMovieDataUsecase: GetMovieDataUsecase) :
+    BaseViewModel() {
 
     private val searchData: MutableLiveData<List<MovieDetails>> = MutableLiveData()
 

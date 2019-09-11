@@ -7,7 +7,8 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 
-class GetMovieDataUsecase @Inject constructor(private val api: TMDBApi) : BaseUsecase<MovieSearchWrapper>() {
+class GetMovieDataUsecase @Inject constructor(private val api: TMDBApi) :
+    BaseUsecase<MovieSearchWrapper>() {
 
     private var searchTerm: String = ""
 
